@@ -1,2719 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Aws Kids - متجر ألعاب ومستلزمات الأطفال</title>
-<style>
-  :root {
-    --pink:#ffb6c1;
-    --soft-pink:#ffcccb;
-    --sky:#8ed1fc;
-    --accent:#ff6699;
-    --bg:#fffafc;
-  }
-  body{font-family: 'Cairo', sans-serif; margin:0; background:var(--bg); color:#222;}
-  header{position:relative; height:380px; overflow:hidden;}
-  .slider{display:flex; width:300%; height:100%; animation:slide 12s infinite;}
-  .slide{flex:0 0 100%; height:100%;}
-  .slide img{width:100%; height:100%; object-fit:cover; display:block;}
-  @keyframes slide{0%{transform:translateX(0%)}33%{transform:translateX(-100%)}66%{transform:translateX(-200%)}100%{transform:translateX(0%)}}
-  .overlay {
-    position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center;
-    background: linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15));
-    color:white; text-align:center; padding:20px;
-  }
-  .overlay h1{margin:0; font-size:2.2rem;}
-  .overlay p{margin:10px 0 0; font-size:1.1rem;}
-  nav{background:var(--soft-pink); text-align:center; padding:10px; position:sticky; top:0; z-index:50;}
-  nav a{margin:0 12px; text-decoration:none; color:#222; font-weight:700;}
-  main{padding:30px 16px; max-width:1100px; margin:0 auto;}
-  section{margin-bottom:40px;}
-  .products-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:18px; margin-top:18px;}
-  .product-card{background:white; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); overflow:hidden; cursor:pointer; transition:transform .18s;}
-  .product-card:hover{transform:translateY(-6px);}
-  .product-image-wrap{height:200px; overflow:hidden;}
-  .product-img{width:100%; height:100%; object-fit:cover; display:block;}
-  .product-info{padding:10px; text-align:right;}
-  .product-name{margin:0 0 6px; color:var(--accent); font-size:1rem;}
-  .product-price{margin:0; color:#444;}
-  .cat-title{margin:0; font-size:1.3rem; color:var(--accent);}
-  .cat-desc{margin:6px 0 0; color:#666;}
-  .contact-box{background:#fff; border-radius:10px; padding:18px; box-shadow:0 6px 18px rgba(0,0,0,0.06); max-width:700px; margin:0 auto;}
-  footer{text-align:center; padding:18px; background:var(--pink); color:white;}
-  /* modal */
-  .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; z-index:100;}
-  .modal{background:white; border-radius:12px; max-width:700px; width:94%; padding:18px;}
-  .modal .close{float:left; cursor:pointer; font-weight:bold;}
-  .contact-links a{display:block; margin:6px 0; color:var(--accent); text-decoration:none;}
-  /* responsive */
-  @media(max-width:600px){ .overlay h1{font-size:1.4rem;} .overlay p{font-size:0.95rem;} .product-image-wrap{height:180px;} }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="slider">
-    <div class="slide"><img src="https://drive.google.com/uc?export=view&id=1w8mf4UUZ6yscqpkbsTXe01Zor3iLvofC" alt="slide1"></div>
-    <div class="slide"><img src="https://drive.google.com/uc?export=view&id=1MbEi8WkkLMJlaeBfjfTdKt3FqFRrASVL" alt="slide2"></div>
-    <div class="slide"><img src="https://drive.google.com/uc?export=view&id=1vmL_E8cZsnQ34hK3xoYH6ettZh_dyMJy" alt="slide3"></div>
-  </div>
-  <div class="overlay">
-    <h1 id="overlayTitle">مرحبًا بكم في Aws Kids!</h1>
-    <p id="overlaySub">عالم المرح يبدأ من هنا 🎠 — أفضل متجر لألعاب ومستلزمات الأطفال</p>
-    <div style="margin-top:12px;">
-      <a href="#contact" style="background:var(--accent); color:white; padding:10px 14px; border-radius:8px; text-decoration:none;">تواصل معنا</a>
-    </div>
-  </div>
-</header>
-
-<nav>
-  <a href="#home">الرئيسية</a>
-  <a href="#products">المنتجات</a>
-  <a href="#contact">تواصل معنا</a>
-</nav>
-
-<main>
-  <section id="home">
-    <h2>Aws Kids - متجر ألعاب ومستلزمات الأطفال</h2>
-    <p>اختَر الفئة لعرض المنتجات، واضغط على أي منتج لعرض تفاصيله في نافذة سريعة.</p>
-  </section>
-
-  <section id="products">
-    <h2>المنتجات</h2>
-    <!-- Category tabs -->
-    <div style="text-align:center; margin-bottom:12px;">
-    <button class="cat-btn" data-target="cat1" style="margin:4px 6px; padding:8px 12px; border-radius:10px; border:none; background:var(--soft-pink); cursor:pointer;">عربايات</button>
-    <button class="cat-btn" data-target="cat2" style="margin:4px 6px; padding:8px 12px; border-radius:10px; border:none; background:var(--soft-pink); cursor:pointer;">دراجات ومشايات</button>
-    <button class="cat-btn" data-target="cat3" style="margin:4px 6px; padding:8px 12px; border-radius:10px; border:none; background:var(--soft-pink); cursor:pointer;">كراسي طعام ومتحركة</button>
-    <button class="cat-btn" data-target="cat4" style="margin:4px 6px; padding:8px 12px; border-radius:10px; border:none; background:var(--soft-pink); cursor:pointer;">ألعاب</button>
-    <button class="cat-btn" data-target="cat5" style="margin:4px 6px; padding:8px 12px; border-radius:10px; border:none; background:var(--soft-pink); cursor:pointer;">ديكور</button>
-
-    </div>
-
-    <!-- Products by category -->
-<div class="category" id="cat1">
-  <h3 class="cat-title">عربايات</h3>
-  <p class="cat-desc">عربايات أطفال مريحة وعملية</p>
-  <div class="products-grid">
-
-    <div class="product-card" data-name="منتج 1 - عربايات" data-price="22 ر.س" data-desc="وصف منتج 1 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 1 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 1 - عربايات</h4>
-        <p class="product-price">22 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 2 - عربايات" data-price="24 ر.س" data-desc="وصف منتج 2 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 2 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 2 - عربايات</h4>
-        <p class="product-price">24 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 3 - عربايات" data-price="26 ر.س" data-desc="وصف منتج 3 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 3 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 3 - عربايات</h4>
-        <p class="product-price">26 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 4 - عربايات" data-price="28 ر.س" data-desc="وصف منتج 4 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 4 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 4 - عربايات</h4>
-        <p class="product-price">28 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 5 - عربايات" data-price="30 ر.س" data-desc="وصف منتج 5 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 5 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 5 - عربايات</h4>
-        <p class="product-price">30 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 6 - عربايات" data-price="32 ر.س" data-desc="وصف منتج 6 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 6 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 6 - عربايات</h4>
-        <p class="product-price">32 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 7 - عربايات" data-price="34 ر.س" data-desc="وصف منتج 7 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 7 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 7 - عربايات</h4>
-        <p class="product-price">34 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 8 - عربايات" data-price="36 ر.س" data-desc="وصف منتج 8 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 8 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 8 - عربايات</h4>
-        <p class="product-price">36 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 9 - عربايات" data-price="38 ر.س" data-desc="وصف منتج 9 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 9 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 9 - عربايات</h4>
-        <p class="product-price">38 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 10 - عربايات" data-price="40 ر.س" data-desc="وصف منتج 10 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 10 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 10 - عربايات</h4>
-        <p class="product-price">40 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 11 - عربايات" data-price="42 ر.س" data-desc="وصف منتج 11 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 11 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 11 - عربايات</h4>
-        <p class="product-price">42 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 12 - عربايات" data-price="44 ر.س" data-desc="وصف منتج 12 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 12 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 12 - عربايات</h4>
-        <p class="product-price">44 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 13 - عربايات" data-price="46 ر.س" data-desc="وصف منتج 13 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 13 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 13 - عربايات</h4>
-        <p class="product-price">46 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 14 - عربايات" data-price="48 ر.س" data-desc="وصف منتج 14 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 14 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 14 - عربايات</h4>
-        <p class="product-price">48 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 15 - عربايات" data-price="50 ر.س" data-desc="وصف منتج 15 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 15 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 15 - عربايات</h4>
-        <p class="product-price">50 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 16 - عربايات" data-price="52 ر.س" data-desc="وصف منتج 16 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 16 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 16 - عربايات</h4>
-        <p class="product-price">52 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 17 - عربايات" data-price="54 ر.س" data-desc="وصف منتج 17 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 17 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 17 - عربايات</h4>
-        <p class="product-price">54 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 18 - عربايات" data-price="56 ر.س" data-desc="وصف منتج 18 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 18 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 18 - عربايات</h4>
-        <p class="product-price">56 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 19 - عربايات" data-price="58 ر.س" data-desc="وصف منتج 19 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 19 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 19 - عربايات</h4>
-        <p class="product-price">58 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 20 - عربايات" data-price="60 ر.س" data-desc="وصف منتج 20 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 20 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 20 - عربايات</h4>
-        <p class="product-price">60 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 21 - عربايات" data-price="62 ر.س" data-desc="وصف منتج 21 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 21 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 21 - عربايات</h4>
-        <p class="product-price">62 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 22 - عربايات" data-price="64 ر.س" data-desc="وصف منتج 22 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 22 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 22 - عربايات</h4>
-        <p class="product-price">64 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 23 - عربايات" data-price="66 ر.س" data-desc="وصف منتج 23 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 23 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 23 - عربايات</h4>
-        <p class="product-price">66 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 24 - عربايات" data-price="68 ر.س" data-desc="وصف منتج 24 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 24 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 24 - عربايات</h4>
-        <p class="product-price">68 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 25 - عربايات" data-price="70 ر.س" data-desc="وصف منتج 25 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 25 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 25 - عربايات</h4>
-        <p class="product-price">70 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 26 - عربايات" data-price="72 ر.س" data-desc="وصف منتج 26 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 26 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 26 - عربايات</h4>
-        <p class="product-price">72 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 27 - عربايات" data-price="74 ر.س" data-desc="وصف منتج 27 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 27 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 27 - عربايات</h4>
-        <p class="product-price">74 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 28 - عربايات" data-price="76 ر.س" data-desc="وصف منتج 28 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 28 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 28 - عربايات</h4>
-        <p class="product-price">76 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 29 - عربايات" data-price="78 ر.س" data-desc="وصف منتج 29 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 29 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 29 - عربايات</h4>
-        <p class="product-price">78 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 30 - عربايات" data-price="80 ر.س" data-desc="وصف منتج 30 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 30 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 30 - عربايات</h4>
-        <p class="product-price">80 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 31 - عربايات" data-price="82 ر.س" data-desc="وصف منتج 31 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 31 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 31 - عربايات</h4>
-        <p class="product-price">82 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 32 - عربايات" data-price="84 ر.س" data-desc="وصف منتج 32 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 32 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 32 - عربايات</h4>
-        <p class="product-price">84 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 33 - عربايات" data-price="86 ر.س" data-desc="وصف منتج 33 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 33 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 33 - عربايات</h4>
-        <p class="product-price">86 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 34 - عربايات" data-price="88 ر.س" data-desc="وصف منتج 34 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 34 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 34 - عربايات</h4>
-        <p class="product-price">88 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 35 - عربايات" data-price="90 ر.س" data-desc="وصف منتج 35 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 35 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 35 - عربايات</h4>
-        <p class="product-price">90 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 36 - عربايات" data-price="92 ر.س" data-desc="وصف منتج 36 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 36 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 36 - عربايات</h4>
-        <p class="product-price">92 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 37 - عربايات" data-price="94 ر.س" data-desc="وصف منتج 37 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 37 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 37 - عربايات</h4>
-        <p class="product-price">94 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 38 - عربايات" data-price="96 ر.س" data-desc="وصف منتج 38 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 38 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 38 - عربايات</h4>
-        <p class="product-price">96 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 39 - عربايات" data-price="98 ر.س" data-desc="وصف منتج 39 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 39 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 39 - عربايات</h4>
-        <p class="product-price">98 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 40 - عربايات" data-price="100 ر.س" data-desc="وصف منتج 40 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 40 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 40 - عربايات</h4>
-        <p class="product-price">100 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 41 - عربايات" data-price="102 ر.س" data-desc="وصف منتج 41 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 41 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 41 - عربايات</h4>
-        <p class="product-price">102 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 42 - عربايات" data-price="104 ر.س" data-desc="وصف منتج 42 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 42 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 42 - عربايات</h4>
-        <p class="product-price">104 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 43 - عربايات" data-price="106 ر.س" data-desc="وصف منتج 43 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 43 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 43 - عربايات</h4>
-        <p class="product-price">106 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 44 - عربايات" data-price="108 ر.س" data-desc="وصف منتج 44 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 44 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 44 - عربايات</h4>
-        <p class="product-price">108 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 45 - عربايات" data-price="110 ر.س" data-desc="وصف منتج 45 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 45 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 45 - عربايات</h4>
-        <p class="product-price">110 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 46 - عربايات" data-price="112 ر.س" data-desc="وصف منتج 46 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 46 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 46 - عربايات</h4>
-        <p class="product-price">112 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 47 - عربايات" data-price="114 ر.س" data-desc="وصف منتج 47 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 47 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 47 - عربايات</h4>
-        <p class="product-price">114 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 48 - عربايات" data-price="116 ر.س" data-desc="وصف منتج 48 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 48 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 48 - عربايات</h4>
-        <p class="product-price">116 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 49 - عربايات" data-price="118 ر.س" data-desc="وصف منتج 49 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 49 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 49 - عربايات</h4>
-        <p class="product-price">118 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 50 - عربايات" data-price="20 ر.س" data-desc="وصف منتج 50 - عربايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 50 - عربايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 50 - عربايات</h4>
-        <p class="product-price">20 ر.س</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="category" id="cat2">
-  <h3 class="cat-title">دراجات ومشايات</h3>
-  <p class="cat-desc">دراجات ومشايات لتطوير الحركة والمهارات</p>
-  <div class="products-grid">
-
-    <div class="product-card" data-name="منتج 1 - دراجات ومشايات" data-price="22 ر.س" data-desc="وصف منتج 1 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 1 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 1 - دراجات ومشايات</h4>
-        <p class="product-price">22 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 2 - دراجات ومشايات" data-price="24 ر.س" data-desc="وصف منتج 2 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 2 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 2 - دراجات ومشايات</h4>
-        <p class="product-price">24 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 3 - دراجات ومشايات" data-price="26 ر.س" data-desc="وصف منتج 3 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 3 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 3 - دراجات ومشايات</h4>
-        <p class="product-price">26 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 4 - دراجات ومشايات" data-price="28 ر.س" data-desc="وصف منتج 4 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 4 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 4 - دراجات ومشايات</h4>
-        <p class="product-price">28 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 5 - دراجات ومشايات" data-price="30 ر.س" data-desc="وصف منتج 5 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 5 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 5 - دراجات ومشايات</h4>
-        <p class="product-price">30 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 6 - دراجات ومشايات" data-price="32 ر.س" data-desc="وصف منتج 6 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 6 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 6 - دراجات ومشايات</h4>
-        <p class="product-price">32 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 7 - دراجات ومشايات" data-price="34 ر.س" data-desc="وصف منتج 7 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 7 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 7 - دراجات ومشايات</h4>
-        <p class="product-price">34 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 8 - دراجات ومشايات" data-price="36 ر.س" data-desc="وصف منتج 8 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 8 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 8 - دراجات ومشايات</h4>
-        <p class="product-price">36 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 9 - دراجات ومشايات" data-price="38 ر.س" data-desc="وصف منتج 9 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 9 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 9 - دراجات ومشايات</h4>
-        <p class="product-price">38 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 10 - دراجات ومشايات" data-price="40 ر.س" data-desc="وصف منتج 10 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 10 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 10 - دراجات ومشايات</h4>
-        <p class="product-price">40 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 11 - دراجات ومشايات" data-price="42 ر.س" data-desc="وصف منتج 11 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 11 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 11 - دراجات ومشايات</h4>
-        <p class="product-price">42 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 12 - دراجات ومشايات" data-price="44 ر.س" data-desc="وصف منتج 12 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 12 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 12 - دراجات ومشايات</h4>
-        <p class="product-price">44 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 13 - دراجات ومشايات" data-price="46 ر.س" data-desc="وصف منتج 13 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 13 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 13 - دراجات ومشايات</h4>
-        <p class="product-price">46 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 14 - دراجات ومشايات" data-price="48 ر.س" data-desc="وصف منتج 14 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 14 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 14 - دراجات ومشايات</h4>
-        <p class="product-price">48 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 15 - دراجات ومشايات" data-price="50 ر.س" data-desc="وصف منتج 15 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 15 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 15 - دراجات ومشايات</h4>
-        <p class="product-price">50 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 16 - دراجات ومشايات" data-price="52 ر.س" data-desc="وصف منتج 16 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 16 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 16 - دراجات ومشايات</h4>
-        <p class="product-price">52 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 17 - دراجات ومشايات" data-price="54 ر.س" data-desc="وصف منتج 17 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 17 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 17 - دراجات ومشايات</h4>
-        <p class="product-price">54 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 18 - دراجات ومشايات" data-price="56 ر.س" data-desc="وصف منتج 18 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 18 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 18 - دراجات ومشايات</h4>
-        <p class="product-price">56 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 19 - دراجات ومشايات" data-price="58 ر.س" data-desc="وصف منتج 19 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 19 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 19 - دراجات ومشايات</h4>
-        <p class="product-price">58 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 20 - دراجات ومشايات" data-price="60 ر.س" data-desc="وصف منتج 20 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 20 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 20 - دراجات ومشايات</h4>
-        <p class="product-price">60 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 21 - دراجات ومشايات" data-price="62 ر.س" data-desc="وصف منتج 21 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 21 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 21 - دراجات ومشايات</h4>
-        <p class="product-price">62 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 22 - دراجات ومشايات" data-price="64 ر.س" data-desc="وصف منتج 22 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 22 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 22 - دراجات ومشايات</h4>
-        <p class="product-price">64 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 23 - دراجات ومشايات" data-price="66 ر.س" data-desc="وصف منتج 23 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 23 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 23 - دراجات ومشايات</h4>
-        <p class="product-price">66 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 24 - دراجات ومشايات" data-price="68 ر.س" data-desc="وصف منتج 24 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 24 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 24 - دراجات ومشايات</h4>
-        <p class="product-price">68 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 25 - دراجات ومشايات" data-price="70 ر.س" data-desc="وصف منتج 25 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 25 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 25 - دراجات ومشايات</h4>
-        <p class="product-price">70 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 26 - دراجات ومشايات" data-price="72 ر.س" data-desc="وصف منتج 26 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 26 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 26 - دراجات ومشايات</h4>
-        <p class="product-price">72 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 27 - دراجات ومشايات" data-price="74 ر.س" data-desc="وصف منتج 27 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 27 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 27 - دراجات ومشايات</h4>
-        <p class="product-price">74 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 28 - دراجات ومشايات" data-price="76 ر.س" data-desc="وصف منتج 28 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 28 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 28 - دراجات ومشايات</h4>
-        <p class="product-price">76 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 29 - دراجات ومشايات" data-price="78 ر.س" data-desc="وصف منتج 29 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 29 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 29 - دراجات ومشايات</h4>
-        <p class="product-price">78 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 30 - دراجات ومشايات" data-price="80 ر.س" data-desc="وصف منتج 30 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 30 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 30 - دراجات ومشايات</h4>
-        <p class="product-price">80 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 31 - دراجات ومشايات" data-price="82 ر.س" data-desc="وصف منتج 31 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 31 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 31 - دراجات ومشايات</h4>
-        <p class="product-price">82 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 32 - دراجات ومشايات" data-price="84 ر.س" data-desc="وصف منتج 32 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 32 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 32 - دراجات ومشايات</h4>
-        <p class="product-price">84 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 33 - دراجات ومشايات" data-price="86 ر.س" data-desc="وصف منتج 33 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 33 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 33 - دراجات ومشايات</h4>
-        <p class="product-price">86 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 34 - دراجات ومشايات" data-price="88 ر.س" data-desc="وصف منتج 34 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 34 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 34 - دراجات ومشايات</h4>
-        <p class="product-price">88 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 35 - دراجات ومشايات" data-price="90 ر.س" data-desc="وصف منتج 35 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 35 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 35 - دراجات ومشايات</h4>
-        <p class="product-price">90 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 36 - دراجات ومشايات" data-price="92 ر.س" data-desc="وصف منتج 36 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 36 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 36 - دراجات ومشايات</h4>
-        <p class="product-price">92 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 37 - دراجات ومشايات" data-price="94 ر.س" data-desc="وصف منتج 37 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 37 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 37 - دراجات ومشايات</h4>
-        <p class="product-price">94 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 38 - دراجات ومشايات" data-price="96 ر.س" data-desc="وصف منتج 38 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 38 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 38 - دراجات ومشايات</h4>
-        <p class="product-price">96 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 39 - دراجات ومشايات" data-price="98 ر.س" data-desc="وصف منتج 39 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 39 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 39 - دراجات ومشايات</h4>
-        <p class="product-price">98 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 40 - دراجات ومشايات" data-price="100 ر.س" data-desc="وصف منتج 40 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 40 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 40 - دراجات ومشايات</h4>
-        <p class="product-price">100 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 41 - دراجات ومشايات" data-price="102 ر.س" data-desc="وصف منتج 41 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 41 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 41 - دراجات ومشايات</h4>
-        <p class="product-price">102 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 42 - دراجات ومشايات" data-price="104 ر.س" data-desc="وصف منتج 42 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 42 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 42 - دراجات ومشايات</h4>
-        <p class="product-price">104 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 43 - دراجات ومشايات" data-price="106 ر.س" data-desc="وصف منتج 43 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 43 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 43 - دراجات ومشايات</h4>
-        <p class="product-price">106 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 44 - دراجات ومشايات" data-price="108 ر.س" data-desc="وصف منتج 44 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 44 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 44 - دراجات ومشايات</h4>
-        <p class="product-price">108 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 45 - دراجات ومشايات" data-price="110 ر.س" data-desc="وصف منتج 45 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 45 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 45 - دراجات ومشايات</h4>
-        <p class="product-price">110 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 46 - دراجات ومشايات" data-price="112 ر.س" data-desc="وصف منتج 46 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 46 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 46 - دراجات ومشايات</h4>
-        <p class="product-price">112 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 47 - دراجات ومشايات" data-price="114 ر.س" data-desc="وصف منتج 47 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 47 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 47 - دراجات ومشايات</h4>
-        <p class="product-price">114 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 48 - دراجات ومشايات" data-price="116 ر.س" data-desc="وصف منتج 48 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 48 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 48 - دراجات ومشايات</h4>
-        <p class="product-price">116 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 49 - دراجات ومشايات" data-price="118 ر.س" data-desc="وصف منتج 49 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 49 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 49 - دراجات ومشايات</h4>
-        <p class="product-price">118 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 50 - دراجات ومشايات" data-price="20 ر.س" data-desc="وصف منتج 50 - دراجات ومشايات. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 50 - دراجات ومشايات" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 50 - دراجات ومشايات</h4>
-        <p class="product-price">20 ر.س</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="category" id="cat3">
-  <h3 class="cat-title">كراسي طعام ومتحركة</h3>
-  <p class="cat-desc">كراسي طعام ومقاعد متحركة آمنة</p>
-  <div class="products-grid">
-
-    <div class="product-card" data-name="منتج 1 - كراسي طعام ومتحركة" data-price="22 ر.س" data-desc="وصف منتج 1 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 1 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 1 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">22 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 2 - كراسي طعام ومتحركة" data-price="24 ر.س" data-desc="وصف منتج 2 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 2 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 2 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">24 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 3 - كراسي طعام ومتحركة" data-price="26 ر.س" data-desc="وصف منتج 3 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 3 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 3 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">26 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 4 - كراسي طعام ومتحركة" data-price="28 ر.س" data-desc="وصف منتج 4 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 4 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 4 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">28 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 5 - كراسي طعام ومتحركة" data-price="30 ر.س" data-desc="وصف منتج 5 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 5 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 5 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">30 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 6 - كراسي طعام ومتحركة" data-price="32 ر.س" data-desc="وصف منتج 6 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 6 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 6 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">32 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 7 - كراسي طعام ومتحركة" data-price="34 ر.س" data-desc="وصف منتج 7 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 7 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 7 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">34 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 8 - كراسي طعام ومتحركة" data-price="36 ر.س" data-desc="وصف منتج 8 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 8 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 8 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">36 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 9 - كراسي طعام ومتحركة" data-price="38 ر.س" data-desc="وصف منتج 9 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 9 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 9 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">38 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 10 - كراسي طعام ومتحركة" data-price="40 ر.س" data-desc="وصف منتج 10 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 10 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 10 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">40 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 11 - كراسي طعام ومتحركة" data-price="42 ر.س" data-desc="وصف منتج 11 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 11 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 11 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">42 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 12 - كراسي طعام ومتحركة" data-price="44 ر.س" data-desc="وصف منتج 12 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 12 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 12 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">44 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 13 - كراسي طعام ومتحركة" data-price="46 ر.س" data-desc="وصف منتج 13 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 13 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 13 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">46 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 14 - كراسي طعام ومتحركة" data-price="48 ر.س" data-desc="وصف منتج 14 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 14 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 14 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">48 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 15 - كراسي طعام ومتحركة" data-price="50 ر.س" data-desc="وصف منتج 15 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 15 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 15 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">50 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 16 - كراسي طعام ومتحركة" data-price="52 ر.س" data-desc="وصف منتج 16 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 16 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 16 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">52 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 17 - كراسي طعام ومتحركة" data-price="54 ر.س" data-desc="وصف منتج 17 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 17 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 17 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">54 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 18 - كراسي طعام ومتحركة" data-price="56 ر.س" data-desc="وصف منتج 18 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 18 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 18 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">56 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 19 - كراسي طعام ومتحركة" data-price="58 ر.س" data-desc="وصف منتج 19 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 19 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 19 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">58 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 20 - كراسي طعام ومتحركة" data-price="60 ر.س" data-desc="وصف منتج 20 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 20 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 20 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">60 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 21 - كراسي طعام ومتحركة" data-price="62 ر.س" data-desc="وصف منتج 21 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 21 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 21 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">62 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 22 - كراسي طعام ومتحركة" data-price="64 ر.س" data-desc="وصف منتج 22 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 22 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 22 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">64 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 23 - كراسي طعام ومتحركة" data-price="66 ر.س" data-desc="وصف منتج 23 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 23 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 23 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">66 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 24 - كراسي طعام ومتحركة" data-price="68 ر.س" data-desc="وصف منتج 24 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 24 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 24 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">68 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 25 - كراسي طعام ومتحركة" data-price="70 ر.س" data-desc="وصف منتج 25 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 25 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 25 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">70 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 26 - كراسي طعام ومتحركة" data-price="72 ر.س" data-desc="وصف منتج 26 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 26 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 26 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">72 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 27 - كراسي طعام ومتحركة" data-price="74 ر.س" data-desc="وصف منتج 27 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 27 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 27 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">74 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 28 - كراسي طعام ومتحركة" data-price="76 ر.س" data-desc="وصف منتج 28 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 28 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 28 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">76 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 29 - كراسي طعام ومتحركة" data-price="78 ر.س" data-desc="وصف منتج 29 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 29 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 29 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">78 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 30 - كراسي طعام ومتحركة" data-price="80 ر.س" data-desc="وصف منتج 30 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 30 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 30 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">80 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 31 - كراسي طعام ومتحركة" data-price="82 ر.س" data-desc="وصف منتج 31 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 31 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 31 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">82 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 32 - كراسي طعام ومتحركة" data-price="84 ر.س" data-desc="وصف منتج 32 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 32 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 32 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">84 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 33 - كراسي طعام ومتحركة" data-price="86 ر.س" data-desc="وصف منتج 33 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 33 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 33 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">86 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 34 - كراسي طعام ومتحركة" data-price="88 ر.س" data-desc="وصف منتج 34 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 34 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 34 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">88 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 35 - كراسي طعام ومتحركة" data-price="90 ر.س" data-desc="وصف منتج 35 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 35 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 35 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">90 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 36 - كراسي طعام ومتحركة" data-price="92 ر.س" data-desc="وصف منتج 36 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 36 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 36 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">92 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 37 - كراسي طعام ومتحركة" data-price="94 ر.س" data-desc="وصف منتج 37 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 37 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 37 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">94 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 38 - كراسي طعام ومتحركة" data-price="96 ر.س" data-desc="وصف منتج 38 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 38 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 38 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">96 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 39 - كراسي طعام ومتحركة" data-price="98 ر.س" data-desc="وصف منتج 39 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 39 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 39 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">98 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 40 - كراسي طعام ومتحركة" data-price="100 ر.س" data-desc="وصف منتج 40 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 40 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 40 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">100 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 41 - كراسي طعام ومتحركة" data-price="102 ر.س" data-desc="وصف منتج 41 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 41 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 41 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">102 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 42 - كراسي طعام ومتحركة" data-price="104 ر.س" data-desc="وصف منتج 42 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 42 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 42 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">104 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 43 - كراسي طعام ومتحركة" data-price="106 ر.س" data-desc="وصف منتج 43 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 43 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 43 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">106 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 44 - كراسي طعام ومتحركة" data-price="108 ر.س" data-desc="وصف منتج 44 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 44 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 44 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">108 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 45 - كراسي طعام ومتحركة" data-price="110 ر.س" data-desc="وصف منتج 45 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 45 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 45 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">110 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 46 - كراسي طعام ومتحركة" data-price="112 ر.س" data-desc="وصف منتج 46 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 46 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 46 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">112 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 47 - كراسي طعام ومتحركة" data-price="114 ر.س" data-desc="وصف منتج 47 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 47 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 47 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">114 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 48 - كراسي طعام ومتحركة" data-price="116 ر.س" data-desc="وصف منتج 48 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 48 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 48 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">116 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 49 - كراسي طعام ومتحركة" data-price="118 ر.س" data-desc="وصف منتج 49 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 49 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 49 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">118 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 50 - كراسي طعام ومتحركة" data-price="20 ر.س" data-desc="وصف منتج 50 - كراسي طعام ومتحركة. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 50 - كراسي طعام ومتحركة" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 50 - كراسي طعام ومتحركة</h4>
-        <p class="product-price">20 ر.س</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="category" id="cat4">
-  <h3 class="cat-title">ألعاب</h3>
-  <p class="cat-desc">ألعاب تعليمية وترفيهية لمختلف الأعمار</p>
-  <div class="products-grid">
-
-    <div class="product-card" data-name="منتج 1 - ألعاب" data-price="22 ر.س" data-desc="وصف منتج 1 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 1 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 1 - ألعاب</h4>
-        <p class="product-price">22 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 2 - ألعاب" data-price="24 ر.س" data-desc="وصف منتج 2 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 2 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 2 - ألعاب</h4>
-        <p class="product-price">24 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 3 - ألعاب" data-price="26 ر.س" data-desc="وصف منتج 3 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 3 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 3 - ألعاب</h4>
-        <p class="product-price">26 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 4 - ألعاب" data-price="28 ر.س" data-desc="وصف منتج 4 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 4 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 4 - ألعاب</h4>
-        <p class="product-price">28 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 5 - ألعاب" data-price="30 ر.س" data-desc="وصف منتج 5 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 5 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 5 - ألعاب</h4>
-        <p class="product-price">30 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 6 - ألعاب" data-price="32 ر.س" data-desc="وصف منتج 6 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 6 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 6 - ألعاب</h4>
-        <p class="product-price">32 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 7 - ألعاب" data-price="34 ر.س" data-desc="وصف منتج 7 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 7 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 7 - ألعاب</h4>
-        <p class="product-price">34 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 8 - ألعاب" data-price="36 ر.س" data-desc="وصف منتج 8 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 8 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 8 - ألعاب</h4>
-        <p class="product-price">36 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 9 - ألعاب" data-price="38 ر.س" data-desc="وصف منتج 9 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 9 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 9 - ألعاب</h4>
-        <p class="product-price">38 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 10 - ألعاب" data-price="40 ر.س" data-desc="وصف منتج 10 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 10 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 10 - ألعاب</h4>
-        <p class="product-price">40 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 11 - ألعاب" data-price="42 ر.س" data-desc="وصف منتج 11 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 11 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 11 - ألعاب</h4>
-        <p class="product-price">42 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 12 - ألعاب" data-price="44 ر.س" data-desc="وصف منتج 12 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 12 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 12 - ألعاب</h4>
-        <p class="product-price">44 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 13 - ألعاب" data-price="46 ر.س" data-desc="وصف منتج 13 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 13 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 13 - ألعاب</h4>
-        <p class="product-price">46 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 14 - ألعاب" data-price="48 ر.س" data-desc="وصف منتج 14 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 14 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 14 - ألعاب</h4>
-        <p class="product-price">48 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 15 - ألعاب" data-price="50 ر.س" data-desc="وصف منتج 15 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 15 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 15 - ألعاب</h4>
-        <p class="product-price">50 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 16 - ألعاب" data-price="52 ر.س" data-desc="وصف منتج 16 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 16 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 16 - ألعاب</h4>
-        <p class="product-price">52 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 17 - ألعاب" data-price="54 ر.س" data-desc="وصف منتج 17 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 17 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 17 - ألعاب</h4>
-        <p class="product-price">54 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 18 - ألعاب" data-price="56 ر.س" data-desc="وصف منتج 18 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 18 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 18 - ألعاب</h4>
-        <p class="product-price">56 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 19 - ألعاب" data-price="58 ر.س" data-desc="وصف منتج 19 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 19 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 19 - ألعاب</h4>
-        <p class="product-price">58 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 20 - ألعاب" data-price="60 ر.س" data-desc="وصف منتج 20 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 20 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 20 - ألعاب</h4>
-        <p class="product-price">60 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 21 - ألعاب" data-price="62 ر.س" data-desc="وصف منتج 21 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 21 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 21 - ألعاب</h4>
-        <p class="product-price">62 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 22 - ألعاب" data-price="64 ر.س" data-desc="وصف منتج 22 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 22 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 22 - ألعاب</h4>
-        <p class="product-price">64 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 23 - ألعاب" data-price="66 ر.س" data-desc="وصف منتج 23 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 23 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 23 - ألعاب</h4>
-        <p class="product-price">66 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 24 - ألعاب" data-price="68 ر.س" data-desc="وصف منتج 24 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 24 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 24 - ألعاب</h4>
-        <p class="product-price">68 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 25 - ألعاب" data-price="70 ر.س" data-desc="وصف منتج 25 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 25 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 25 - ألعاب</h4>
-        <p class="product-price">70 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 26 - ألعاب" data-price="72 ر.س" data-desc="وصف منتج 26 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 26 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 26 - ألعاب</h4>
-        <p class="product-price">72 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 27 - ألعاب" data-price="74 ر.س" data-desc="وصف منتج 27 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 27 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 27 - ألعاب</h4>
-        <p class="product-price">74 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 28 - ألعاب" data-price="76 ر.س" data-desc="وصف منتج 28 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 28 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 28 - ألعاب</h4>
-        <p class="product-price">76 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 29 - ألعاب" data-price="78 ر.س" data-desc="وصف منتج 29 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 29 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 29 - ألعاب</h4>
-        <p class="product-price">78 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 30 - ألعاب" data-price="80 ر.س" data-desc="وصف منتج 30 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 30 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 30 - ألعاب</h4>
-        <p class="product-price">80 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 31 - ألعاب" data-price="82 ر.س" data-desc="وصف منتج 31 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 31 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 31 - ألعاب</h4>
-        <p class="product-price">82 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 32 - ألعاب" data-price="84 ر.س" data-desc="وصف منتج 32 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 32 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 32 - ألعاب</h4>
-        <p class="product-price">84 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 33 - ألعاب" data-price="86 ر.س" data-desc="وصف منتج 33 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 33 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 33 - ألعاب</h4>
-        <p class="product-price">86 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 34 - ألعاب" data-price="88 ر.س" data-desc="وصف منتج 34 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 34 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 34 - ألعاب</h4>
-        <p class="product-price">88 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 35 - ألعاب" data-price="90 ر.س" data-desc="وصف منتج 35 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 35 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 35 - ألعاب</h4>
-        <p class="product-price">90 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 36 - ألعاب" data-price="92 ر.س" data-desc="وصف منتج 36 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 36 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 36 - ألعاب</h4>
-        <p class="product-price">92 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 37 - ألعاب" data-price="94 ر.س" data-desc="وصف منتج 37 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 37 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 37 - ألعاب</h4>
-        <p class="product-price">94 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 38 - ألعاب" data-price="96 ر.س" data-desc="وصف منتج 38 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 38 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 38 - ألعاب</h4>
-        <p class="product-price">96 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 39 - ألعاب" data-price="98 ر.س" data-desc="وصف منتج 39 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 39 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 39 - ألعاب</h4>
-        <p class="product-price">98 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 40 - ألعاب" data-price="100 ر.س" data-desc="وصف منتج 40 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 40 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 40 - ألعاب</h4>
-        <p class="product-price">100 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 41 - ألعاب" data-price="102 ر.س" data-desc="وصف منتج 41 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 41 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 41 - ألعاب</h4>
-        <p class="product-price">102 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 42 - ألعاب" data-price="104 ر.س" data-desc="وصف منتج 42 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 42 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 42 - ألعاب</h4>
-        <p class="product-price">104 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 43 - ألعاب" data-price="106 ر.س" data-desc="وصف منتج 43 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 43 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 43 - ألعاب</h4>
-        <p class="product-price">106 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 44 - ألعاب" data-price="108 ر.س" data-desc="وصف منتج 44 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 44 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 44 - ألعاب</h4>
-        <p class="product-price">108 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 45 - ألعاب" data-price="110 ر.س" data-desc="وصف منتج 45 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 45 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 45 - ألعاب</h4>
-        <p class="product-price">110 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 46 - ألعاب" data-price="112 ر.س" data-desc="وصف منتج 46 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 46 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 46 - ألعاب</h4>
-        <p class="product-price">112 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 47 - ألعاب" data-price="114 ر.س" data-desc="وصف منتج 47 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 47 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 47 - ألعاب</h4>
-        <p class="product-price">114 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 48 - ألعاب" data-price="116 ر.س" data-desc="وصف منتج 48 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 48 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 48 - ألعاب</h4>
-        <p class="product-price">116 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 49 - ألعاب" data-price="118 ر.س" data-desc="وصف منتج 49 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 49 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 49 - ألعاب</h4>
-        <p class="product-price">118 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 50 - ألعاب" data-price="20 ر.س" data-desc="وصف منتج 50 - ألعاب. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 50 - ألعاب" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 50 - ألعاب</h4>
-        <p class="product-price">20 ر.س</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="category" id="cat5">
-  <h3 class="cat-title">ديكور</h3>
-  <p class="cat-desc">مستلزمات ديكور لغرف الأطفال</p>
-  <div class="products-grid">
-
-    <div class="product-card" data-name="منتج 1 - ديكور" data-price="22 ر.س" data-desc="وصف منتج 1 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 1 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 1 - ديكور</h4>
-        <p class="product-price">22 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 2 - ديكور" data-price="24 ر.س" data-desc="وصف منتج 2 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 2 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 2 - ديكور</h4>
-        <p class="product-price">24 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 3 - ديكور" data-price="26 ر.س" data-desc="وصف منتج 3 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 3 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 3 - ديكور</h4>
-        <p class="product-price">26 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 4 - ديكور" data-price="28 ر.س" data-desc="وصف منتج 4 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 4 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 4 - ديكور</h4>
-        <p class="product-price">28 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 5 - ديكور" data-price="30 ر.س" data-desc="وصف منتج 5 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 5 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 5 - ديكور</h4>
-        <p class="product-price">30 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 6 - ديكور" data-price="32 ر.س" data-desc="وصف منتج 6 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 6 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 6 - ديكور</h4>
-        <p class="product-price">32 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 7 - ديكور" data-price="34 ر.س" data-desc="وصف منتج 7 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 7 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 7 - ديكور</h4>
-        <p class="product-price">34 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 8 - ديكور" data-price="36 ر.س" data-desc="وصف منتج 8 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 8 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 8 - ديكور</h4>
-        <p class="product-price">36 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 9 - ديكور" data-price="38 ر.س" data-desc="وصف منتج 9 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 9 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 9 - ديكور</h4>
-        <p class="product-price">38 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 10 - ديكور" data-price="40 ر.س" data-desc="وصف منتج 10 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 10 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 10 - ديكور</h4>
-        <p class="product-price">40 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 11 - ديكور" data-price="42 ر.س" data-desc="وصف منتج 11 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 11 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 11 - ديكور</h4>
-        <p class="product-price">42 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 12 - ديكور" data-price="44 ر.س" data-desc="وصف منتج 12 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 12 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 12 - ديكور</h4>
-        <p class="product-price">44 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 13 - ديكور" data-price="46 ر.س" data-desc="وصف منتج 13 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 13 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 13 - ديكور</h4>
-        <p class="product-price">46 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 14 - ديكور" data-price="48 ر.س" data-desc="وصف منتج 14 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 14 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 14 - ديكور</h4>
-        <p class="product-price">48 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 15 - ديكور" data-price="50 ر.س" data-desc="وصف منتج 15 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 15 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 15 - ديكور</h4>
-        <p class="product-price">50 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 16 - ديكور" data-price="52 ر.س" data-desc="وصف منتج 16 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 16 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 16 - ديكور</h4>
-        <p class="product-price">52 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 17 - ديكور" data-price="54 ر.س" data-desc="وصف منتج 17 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 17 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 17 - ديكور</h4>
-        <p class="product-price">54 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 18 - ديكور" data-price="56 ر.س" data-desc="وصف منتج 18 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 18 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 18 - ديكور</h4>
-        <p class="product-price">56 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 19 - ديكور" data-price="58 ر.س" data-desc="وصف منتج 19 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 19 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 19 - ديكور</h4>
-        <p class="product-price">58 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 20 - ديكور" data-price="60 ر.س" data-desc="وصف منتج 20 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 20 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 20 - ديكور</h4>
-        <p class="product-price">60 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 21 - ديكور" data-price="62 ر.س" data-desc="وصف منتج 21 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 21 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 21 - ديكور</h4>
-        <p class="product-price">62 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 22 - ديكور" data-price="64 ر.س" data-desc="وصف منتج 22 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 22 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 22 - ديكور</h4>
-        <p class="product-price">64 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 23 - ديكور" data-price="66 ر.س" data-desc="وصف منتج 23 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 23 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 23 - ديكور</h4>
-        <p class="product-price">66 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 24 - ديكور" data-price="68 ر.س" data-desc="وصف منتج 24 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 24 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 24 - ديكور</h4>
-        <p class="product-price">68 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 25 - ديكور" data-price="70 ر.س" data-desc="وصف منتج 25 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 25 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 25 - ديكور</h4>
-        <p class="product-price">70 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 26 - ديكور" data-price="72 ر.س" data-desc="وصف منتج 26 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 26 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 26 - ديكور</h4>
-        <p class="product-price">72 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 27 - ديكور" data-price="74 ر.س" data-desc="وصف منتج 27 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 27 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 27 - ديكور</h4>
-        <p class="product-price">74 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 28 - ديكور" data-price="76 ر.س" data-desc="وصف منتج 28 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 28 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 28 - ديكور</h4>
-        <p class="product-price">76 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 29 - ديكور" data-price="78 ر.س" data-desc="وصف منتج 29 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 29 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 29 - ديكور</h4>
-        <p class="product-price">78 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 30 - ديكور" data-price="80 ر.س" data-desc="وصف منتج 30 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 30 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 30 - ديكور</h4>
-        <p class="product-price">80 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 31 - ديكور" data-price="82 ر.س" data-desc="وصف منتج 31 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 31 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 31 - ديكور</h4>
-        <p class="product-price">82 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 32 - ديكور" data-price="84 ر.س" data-desc="وصف منتج 32 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 32 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 32 - ديكور</h4>
-        <p class="product-price">84 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 33 - ديكور" data-price="86 ر.س" data-desc="وصف منتج 33 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 33 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 33 - ديكور</h4>
-        <p class="product-price">86 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 34 - ديكور" data-price="88 ر.س" data-desc="وصف منتج 34 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 34 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 34 - ديكور</h4>
-        <p class="product-price">88 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 35 - ديكور" data-price="90 ر.س" data-desc="وصف منتج 35 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 35 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 35 - ديكور</h4>
-        <p class="product-price">90 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 36 - ديكور" data-price="92 ر.س" data-desc="وصف منتج 36 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 36 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 36 - ديكور</h4>
-        <p class="product-price">92 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 37 - ديكور" data-price="94 ر.س" data-desc="وصف منتج 37 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 37 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 37 - ديكور</h4>
-        <p class="product-price">94 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 38 - ديكور" data-price="96 ر.س" data-desc="وصف منتج 38 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 38 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 38 - ديكور</h4>
-        <p class="product-price">96 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 39 - ديكور" data-price="98 ر.س" data-desc="وصف منتج 39 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 39 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 39 - ديكور</h4>
-        <p class="product-price">98 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 40 - ديكور" data-price="100 ر.س" data-desc="وصف منتج 40 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 40 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 40 - ديكور</h4>
-        <p class="product-price">100 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 41 - ديكور" data-price="102 ر.س" data-desc="وصف منتج 41 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 41 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 41 - ديكور</h4>
-        <p class="product-price">102 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 42 - ديكور" data-price="104 ر.س" data-desc="وصف منتج 42 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 42 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 42 - ديكور</h4>
-        <p class="product-price">104 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 43 - ديكور" data-price="106 ر.س" data-desc="وصف منتج 43 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 43 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 43 - ديكور</h4>
-        <p class="product-price">106 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 44 - ديكور" data-price="108 ر.س" data-desc="وصف منتج 44 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 44 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 44 - ديكور</h4>
-        <p class="product-price">108 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 45 - ديكور" data-price="110 ر.س" data-desc="وصف منتج 45 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 45 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 45 - ديكور</h4>
-        <p class="product-price">110 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 46 - ديكور" data-price="112 ر.س" data-desc="وصف منتج 46 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 46 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 46 - ديكور</h4>
-        <p class="product-price">112 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 47 - ديكور" data-price="114 ر.س" data-desc="وصف منتج 47 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 47 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 47 - ديكور</h4>
-        <p class="product-price">114 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 48 - ديكور" data-price="116 ر.س" data-desc="وصف منتج 48 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 48 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 48 - ديكور</h4>
-        <p class="product-price">116 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 49 - ديكور" data-price="118 ر.س" data-desc="وصف منتج 49 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 49 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 49 - ديكور</h4>
-        <p class="product-price">118 ر.س</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-name="منتج 50 - ديكور" data-price="20 ر.س" data-desc="وصف منتج 50 - ديكور. هنا يمكنك إضافة وصف المنتج لاحقًا.">
-      <div class="product-image-wrap">
-        <img src="https://via.placeholder.com/400x400?text=صورة+منتج+فارغة" alt="منتج 50 - ديكور" class="product-img">
-      </div>
-      <div class="product-info">
-        <h4 class="product-name">منتج 50 - ديكور</h4>
-        <p class="product-price">20 ر.س</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-  </section>
-
-  <section id="contact">
-    <h2>تواصل معنا</h2>
-    <div class="contact-box">
-      <p>📱 واتساب: <a href="https://wa.me/966939918038" target="_blank">0939918038</a></p>
-      <p>📘 فيسبوك: <a href="https://www.facebook.com/profile.php?id=61581733747017&mibextid=ZbWKwL" target="_blank">صفحتي على فيسبوك</a></p>
-      <p>📧 البريد الإلكتروني: <a href="mailto:awskids3@gmail.com">awskids3@gmail.com</a></p>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <p>© 2025 Aws Kids - جميع الحقوق محفوظة</p>
-</footer>
-
-<!-- Modal -->
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal" role="dialog" aria-modal="true">
-    <span class="close" id="modalClose">✖</span>
-    <div style="clear:both;"></div>
-    <div id="modalContent">
-      <h3 id="mTitle">عنوان المنتج</h3>
-      <p id="mPrice">السعر</p>
-      <div id="mImageWrap" style="text-align:center; margin:12px 0;">
-        <img id="mImage" src="https://via.placeholder.com/500x400?text=صورة+المنتج" alt="" style="max-width:100%; border-radius:8px;">
-      </div>
-      <p id="mDesc">وصف المنتج سيظهر هنا.</p>
-      <div style="margin-top:12px;">
-        <a id="mContact" href="#contact" style="background:var(--accent); color:white; padding:8px 12px; border-radius:8px; text-decoration:none;">تواصل للاستفسار</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Text rotation for overlay
-  const overlayTexts = [
-    {title: "مرحبًا بكم في Aws Kids!", sub: "عالم المرح يبدأ من هنا 🎠"},
-    {title: "متجرك المفضل لألعاب الأطفال", sub: "ألعاب ومستلزمات بجودة عالية"},
-    {title: "الفرح يبدأ من هنا 🎈", sub: "هدايا ومستلزمات لكل الأعمار"}
-  ];
-  let oIndex = 0;
-  const oTitle = document.getElementById('overlayTitle');
-  const oSub = document.getElementById('overlaySub');
-  setInterval(() => {
-    oIndex = (oIndex + 1) % overlayTexts.length;
-    oTitle.textContent = overlayTexts[oIndex].title;
-    oSub.textContent = overlayTexts[oIndex].sub;
-  }, 3000);
-
-  // Category buttons filter
-  document.querySelectorAll('.cat-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.getAttribute('data-target');
-      document.querySelectorAll('.category').forEach(cat => {
-        cat.style.display = (cat.id === target) ? 'block' : 'none';
-      });
-      document.getElementById(target).scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  });
-  // By default show first category
-  document.querySelectorAll('.category').forEach((cat, i) => {
-    cat.style.display = (i===0)?'block':'none';
-  });
-
-  // Modal behavior for product details
-  const modalBackdrop = document.getElementById('modalBackdrop');
-  const modalClose = document.getElementById('modalClose');
-  document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const name = card.getAttribute('data-name');
-      const price = card.getAttribute('data-price');
-      const desc = card.getAttribute('data-desc');
-      const img = card.querySelector('.product-img').getAttribute('src');
-      document.getElementById('mTitle').textContent = name;
-      document.getElementById('mPrice').textContent = price;
-      document.getElementById('mDesc').textContent = desc;
-      document.getElementById('mImage').setAttribute('src', img);
-      const waNumber = "966939918038";
-      const waText = encodeURIComponent("مرحبًا، أود الاستفسار عن " + name + " (من موقع Aws Kids).");
-      document.getElementById('mContact').setAttribute('href', "https://wa.me/" + waNumber + "?text=" + waText);
-      modalBackdrop.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    });
-  });
-  modalClose.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) closeModal(); });
-  function closeModal(){ modalBackdrop.style.display='none'; document.body.style.overflow='auto'; }
-
-</script>
-</body>
-</html>
